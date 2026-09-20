@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <ImageButton
+            android:id="@+id/boutonRetour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_revert"
+            android:background="@android:color/transparent"
+            android:contentDescription="Retour" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/boutonUndo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="↩"
+            android:textSize="22sp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/boutonRedo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="↪"
+            android:textSize="22sp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/boutonSauvegarder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💾"
+            android:textSize="22sp"
+            android:background="@android:color/transparent" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTitre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Titre"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:background="@android:color/transparent" />
+
+    <EditText
+        android:id="@+id/editContenu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+        android:hint="Écrivez votre note ici..."
+        android:textSize="16sp"
+        android:gravity="top"
+        android:background="@android:color/transparent"
+        android:inputType="textMultiLine" />
+
+</LinearLayout>
