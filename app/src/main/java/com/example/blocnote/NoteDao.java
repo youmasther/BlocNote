@@ -23,4 +23,13 @@ public interface NoteDao {
 
     @Query("SELECT * FROM notes WHERE id = :noteId")
     Note getNoteParId(int noteId);
+
+    @Query("UPDATE notes SET estSupprimee = 1 WHERE id = :noteId")
+    void mettreALaCorbeille(int noteId);
+
+    @Query("UPDATE notes SET estSupprimee = 0 WHERE id = :noteId")
+    void restaurerDeLaCorbeille(int noteId);
+
+    @Query("DELETE FROM notes WHERE id = :noteId")
+    void supprimerDefinitivement(int noteId);
 }

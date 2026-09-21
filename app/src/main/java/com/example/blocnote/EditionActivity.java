@@ -33,9 +33,9 @@ public class EditionActivity extends AppCompatActivity {
         editContenu = findViewById(R.id.editContenu);
 
         ImageButton boutonRetour = findViewById(R.id.boutonRetour);
-        Button boutonUndo = findViewById(R.id.boutonUndo);
-        Button boutonRedo = findViewById(R.id.boutonRedo);
-        Button boutonSauvegarder = findViewById(R.id.boutonSauvegarder);
+        ImageButton boutonUndo = findViewById(R.id.boutonUndo);
+        ImageButton boutonRedo = findViewById(R.id.boutonRedo);
+        ImageButton boutonSauvegarder = findViewById(R.id.boutonSauvegarder);
 
         boutonRetour.setOnClickListener(v -> finish()); // déclenche onPause -> sauvegarde auto
 

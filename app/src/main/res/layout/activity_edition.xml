@@ -1,52 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/fond_principal"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:layout_margin="8dp"
+        android:background="@color/design_default_color_primary_variant">
+
+        <!-- boutons retour/undo/redo/save : inchangés, mais ajoute android:tint
+             pour teinter les icônes système en clair -->
+
 
         <ImageButton
             android:id="@+id/boutonRetour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_revert"
+            android:src="@drawable/ic_back"
+            android:tint="@color/texte_principal"
             android:background="@android:color/transparent"
             android:contentDescription="Retour" />
 
+        <!-- ... View spacer inchangé ... -->
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1" />
 
-        <Button
+        <!-- même chose pour boutonRedo et boutonSauvegarder : ajoute android:textColor -->
+        <ImageButton
             android:id="@+id/boutonUndo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="↩"
-            android:textSize="22sp"
-            android:background="@android:color/transparent" />
+            android:src="@drawable/ic_undo"
+            android:tint="@color/texte_principal"
+            android:background="@android:color/transparent"
+            android:contentDescription="Annuler" />
 
-        <Button
+        <ImageButton
             android:id="@+id/boutonRedo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="↪"
-            android:textSize="22sp"
-            android:background="@android:color/transparent" />
+            android:src="@drawable/ic_redo"
+            android:tint="@color/texte_principal"
+            android:background="@android:color/transparent"
+            android:contentDescription="Refaire" />
 
-        <Button
+        <ImageButton
             android:id="@+id/boutonSauvegarder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="💾"
-            android:textSize="22sp"
-            android:background="@android:color/transparent" />
+            android:src="@drawable/ic_save"
+            android:tint="@color/accent"
+            android:background="@android:color/transparent"
+            android:contentDescription="Sauvegarder" />
 
     </LinearLayout>
 
@@ -59,6 +74,8 @@
         android:hint="Titre"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:textColor="@color/texte_principal"
+        android:textColorHint="@color/texte_secondaire"
         android:background="@android:color/transparent" />
 
     <EditText
@@ -69,6 +86,8 @@
         android:layout_margin="16dp"
         android:hint="Écrivez votre note ici..."
         android:textSize="16sp"
+        android:textColor="@color/texte_principal"
+        android:textColorHint="@color/texte_secondaire"
         android:gravity="top"
         android:background="@android:color/transparent"
         android:inputType="textMultiLine" />

@@ -14,6 +14,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     public interface OnNoteClickListener {
         void onNoteClick(Note note);
+        void onNoteLongClick(Note note);
     }
 
     private List<Note> listeNotes;
@@ -41,6 +42,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         holder.textDate.setText(format.format(note.getDateModification()));
 
         holder.itemView.setOnClickListener(v -> listener.onNoteClick(note));
+
+        holder.itemView.setOnLongClickListener(v -> {
+            listener.onNoteLongClick(note);
+            return true; // true = l'événement est "consommé", pas de comportement par défaut
+        });
     }
 
     @Override
@@ -58,4 +64,5 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             textDate = itemView.findViewById(R.id.textDate);
         }
     }
+
 }

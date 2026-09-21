@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuMesNotes"
+        android:title="Mes notes"
+        android:icon="@android:drawable/ic_menu_agenda" />
+    <item
+        android:id="@+id/menuCorbeille"
+        android:title="Corbeille"
+        android:icon="@android:drawable/ic_menu_delete" />
+</menu>

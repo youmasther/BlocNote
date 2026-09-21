@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="fond_principal">#121212</color>
+    <color name="fond_surface">#1E1E1E</color>
+    <color name="fond_carte">#252525</color>
+    <color name="texte_principal">#EAEAEA</color>
+    <color name="texte_secondaire">#9E9E9E</color>
+    <color name="accent">#8AB4F8</color>
+    <color name="danger">#F28B82</color>
 </resources>
