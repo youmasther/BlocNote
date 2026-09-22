@@ -11,8 +11,8 @@ public class Note {
 
     private String titre;
     private String contenu;
-    private long dateModification; // timestamp en millisecondes
-    private boolean estSupprimee;  // pour la corbeille
+    private long dateModification;
+    private boolean estSupprimee;
 
     public Note(String titre, String contenu) {
         this.titre = titre;

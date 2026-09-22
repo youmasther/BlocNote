@@ -37,15 +37,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
         Note note = listeNotes.get(position);
         holder.textTitre.setText(note.getTitre());
+        holder.textApercu.setText(note.getContenu());
 
         SimpleDateFormat format = new SimpleDateFormat("d MMM yyyy HH:mm", Locale.FRENCH);
         holder.textDate.setText(format.format(note.getDateModification()));
 
         holder.itemView.setOnClickListener(v -> listener.onNoteClick(note));
-
         holder.itemView.setOnLongClickListener(v -> {
             listener.onNoteLongClick(note);
-            return true; // true = l'événement est "consommé", pas de comportement par défaut
+            return true;
         });
     }
 
@@ -56,13 +56,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     static class NoteViewHolder extends RecyclerView.ViewHolder {
         TextView textTitre;
+        TextView textApercu;
         TextView textDate;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitre = itemView.findViewById(R.id.textTitre);
+            textApercu = itemView.findViewById(R.id.textApercu);
             textDate = itemView.findViewById(R.id.textDate);
         }
     }
-
 }

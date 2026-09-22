@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:background="@drawable/bg_carte_note"
     android:layout_margin="8dp"
-    android:padding="16dp"
-    android:backgroundTint="@color/">
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/textTitre"
@@ -17,11 +16,21 @@
         android:textColor="@color/texte_principal" />
 
     <TextView
+        android:id="@+id/textApercu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/texte_secondaire"
+        android:layout_marginTop="4dp"
+        android:maxLines="2"
+        android:ellipsize="end" />
+
+    <TextView
         android:id="@+id/textDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="13sp"
+        android:textSize="12sp"
         android:textColor="@color/texte_secondaire"
-        android:layout_marginTop="4dp" />
+        android:layout_marginTop="8dp" />
 
 </LinearLayout>
