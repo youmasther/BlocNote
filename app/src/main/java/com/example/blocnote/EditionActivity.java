@@ -40,7 +40,7 @@ public class EditionActivity extends AppCompatActivity {
         boutonRetour.setOnClickListener(v -> finish()); // déclenche onPause -> sauvegarde auto
 
         boutonSauvegarder.setOnClickListener(v -> {
-            sauvegarderNote();
+            noteActuelle =  sauvegarderNote();
             Toast.makeText(this, "Note sauvegardée", Toast.LENGTH_SHORT).show();
         });
 
@@ -108,13 +108,13 @@ public class EditionActivity extends AppCompatActivity {
         sauvegarderNote();
     }
 
-    private void sauvegarderNote() {
-        if (noteActuelle == null) return;
+    private Note sauvegarderNote() {
+        if (noteActuelle == null) return null;
 
         String titre = editTitre.getText().toString().trim();
         String contenu = editContenu.getText().toString().trim();
 
-        if (titre.isEmpty() && contenu.isEmpty()) return;
+        if (titre.isEmpty() && contenu.isEmpty()) return null;
 
         noteActuelle.setTitre(titre.isEmpty() ? "Sans titre" : titre);
         noteActuelle.setContenu(contenu);
@@ -123,9 +123,12 @@ public class EditionActivity extends AppCompatActivity {
         Executors.newSingleThreadExecutor().execute(() -> {
             if (noteActuelle.getId() == 0) {
                 db.noteDao().inserer(noteActuelle);
+                noteActuelle = db.noteDao().getLastNote();
             } else {
                 db.noteDao().mettreAJour(noteActuelle);
             }
         });
+        return noteActuelle;
     }
+
 }

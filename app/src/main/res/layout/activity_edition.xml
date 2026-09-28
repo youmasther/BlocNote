@@ -14,7 +14,7 @@
         android:gravity="center_vertical"
         android:padding="8dp"
         android:layout_margin="8dp"
-        android:background="@color/design_default_color_primary_variant">
+        android:background="#121212">
 
         <!-- boutons retour/undo/redo/save : inchangés, mais ajoute android:tint
              pour teinter les icônes système en clair -->
@@ -22,11 +22,13 @@
 
         <ImageButton
             android:id="@+id/boutonRetour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_back"
-            android:tint="@color/texte_principal"
-            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_margin="3dp"
+            android:background="@drawable/bouton_rond"
             android:contentDescription="Retour" />
 
         <!-- ... View spacer inchangé ... -->
@@ -38,29 +40,35 @@
         <!-- même chose pour boutonRedo et boutonSauvegarder : ajoute android:textColor -->
         <ImageButton
             android:id="@+id/boutonUndo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_undo"
-            android:tint="@color/texte_principal"
-            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_margin="3dp"
+            android:background="@drawable/bouton_rond"
             android:contentDescription="Annuler" />
 
         <ImageButton
             android:id="@+id/boutonRedo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_redo"
-            android:tint="@color/texte_principal"
-            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_margin="3dp"
+            android:background="@drawable/bouton_rond"
             android:contentDescription="Refaire" />
 
         <ImageButton
             android:id="@+id/boutonSauvegarder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_save"
-            android:tint="@color/accent"
-            android:background="@android:color/transparent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_save2"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_margin="3dp"
+            android:background="@drawable/bouton_rond"
             android:contentDescription="Sauvegarder" />
 
     </LinearLayout>

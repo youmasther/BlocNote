@@ -24,6 +24,9 @@ public interface NoteDao {
     @Query("SELECT * FROM notes WHERE id = :noteId")
     Note getNoteParId(int noteId);
 
+    @Query("SELECT * FROM notes ORDER BY ID DESC LIMIT 1")
+    Note getLastNote();
+
     @Query("UPDATE notes SET estSupprimee = 1 WHERE id = :noteId")
     void mettreALaCorbeille(int noteId);
 
