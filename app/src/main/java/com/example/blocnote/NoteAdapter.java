@@ -42,6 +42,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         SimpleDateFormat format = new SimpleDateFormat("d MMM yyyy HH:mm", Locale.FRENCH);
         holder.textDate.setText(format.format(note.getDateModification()));
 
+        String lieu = note.getLocalisation();
+        holder.textLocalisation.setText(lieu != null ? lieu : "Localisation inconnu");
+
         holder.itemView.setOnClickListener(v -> listener.onNoteClick(note));
         holder.itemView.setOnLongClickListener(v -> {
             listener.onNoteLongClick(note);
@@ -58,12 +61,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         TextView textTitre;
         TextView textApercu;
         TextView textDate;
-
+        TextView textLocalisation;
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitre = itemView.findViewById(R.id.textTitre);
             textApercu = itemView.findViewById(R.id.textApercu);
             textDate = itemView.findViewById(R.id.textDate);
+            textLocalisation = itemView.findViewById(R.id.textLocalisation);
         }
     }
 }

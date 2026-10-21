@@ -42,9 +42,10 @@
             android:textColor="@color/texte_secondaire" />
 
         <TextView
+            android:id="@+id/textLocalisation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mes notes"
+            android:text="Localisation"
             android:textSize="12sp"
             android:textColor="@color/texte_secondaire"
             android:layout_marginStart="8dp" />

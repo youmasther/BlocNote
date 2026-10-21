@@ -11,6 +11,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.concurrent.Executors;
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.ContextCompat;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class EditionActivity extends AppCompatActivity {
 
@@ -22,6 +36,10 @@ public class EditionActivity extends AppCompatActivity {
     private final Deque<String> pileUndo = new ArrayDeque<>();
     private final Deque<String> pileRedo = new ArrayDeque<>();
     private boolean enTrainDeRestaurer = false;
+
+    private final ActivityResultLauncher<String[]> demandePermissionLocalisation =
+            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), resultat -> {
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +97,13 @@ public class EditionActivity extends AppCompatActivity {
                 });
             });
         }
+
+        if (!aPermissionLocalisation()) {
+            demandePermissionLocalisation.launch(new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            });
+        }
     }
 
     private void annuler() {
@@ -120,7 +145,16 @@ public class EditionActivity extends AppCompatActivity {
         noteActuelle.setContenu(contenu);
         noteActuelle.setDateModification(System.currentTimeMillis());
 
+        // Position : uniquement si la note n'en a pas encore
+        Location position = (noteActuelle.getLatitude() == null) ? obtenirPosition() : null;
+
         Executors.newSingleThreadExecutor().execute(() -> {
+            if (position != null) {
+                noteActuelle.setLatitude(position.getLatitude());
+                noteActuelle.setLongitude(position.getLongitude());
+                noteActuelle.setLocalisation(nommerPosition(position)); // réseau : thread secondaire obligatoire
+            }
+
             if (noteActuelle.getId() == 0) {
                 db.noteDao().inserer(noteActuelle);
                 noteActuelle = db.noteDao().getLastNote();
@@ -129,6 +163,44 @@ public class EditionActivity extends AppCompatActivity {
             }
         });
         return noteActuelle;
+    }
+
+    private boolean aPermissionLocalisation() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    @SuppressLint("MissingPermission")
+    private Location obtenirPosition() {
+        if (!aPermissionLocalisation()) return null;
+
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location meilleure = null;
+
+        for (String fournisseur : lm.getProviders(true)) { // true = seulement les fournisseurs activés
+            try {
+                Location l = lm.getLastKnownLocation(fournisseur);
+                if (l != null && (meilleure == null || l.getTime() > meilleure.getTime())) {
+                    meilleure = l;
+                }
+            } catch (SecurityException e) {
+
+            }
+        }
+        return meilleure;
+    }
+
+    private String nommerPosition(Location position) {
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> adresses = geocoder.getFromLocation(position.getLatitude(), position.getLongitude(), 1);
+            if (adresses != null && !adresses.isEmpty() && adresses.get(0).getLocality() != null) {
+                return adresses.get(0).getLocality();
+            }
+        } catch (IOException e) {
+
+        }
+        return String.format(Locale.US, "%.4f, %.4f", position.getLatitude(), position.getLongitude());
     }
 
 }
