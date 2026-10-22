@@ -4,8 +4,8 @@
 |---|---|
 | **Créateur** | Youssouf Diallo |
 | **Projet** | Projet éditeur 2026, travail individuel |
-| **Licence** | MIT (voir la section [Licence](#licence)) |
-| **Dépôt** | [https://github.com/youmasther/BlocNote] |
+| **Licence** | MIT (voir la section [LICENSE](LICENSE)) |
+| **Dépôt** | https://github.com/youmasther/BlocNote |
 | **Langage** | Java, librairies Android officielles |
 
 ## Description
@@ -133,4 +133,4 @@ L'APK de débogage se trouve dans `app/build/outputs/apk/debug/`.
 
 Ce projet est distribué sous licence **MIT**. Le texte complet se trouve dans le fichier `LICENSE` à la racine du dépôt.
 
-Copyright (c) 2026 [Prénom Nom]
+Copyright (c) 2026 Youssouf Diallo
